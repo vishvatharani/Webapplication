@@ -1,0 +1,11 @@
+body{
+    background: blue;
+    background-image: url("/static/logo.png");
+}
+
+body *{
+    font-family: "Arial Black";
+    font-weight: bold;
+    font-palette: dark;
+    font-size: x-large;
+}

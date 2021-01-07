@@ -1,0 +1,33 @@
+{% load static from static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+<center>
+    <p style="color:red">Welcome to AD Sensor Web Application</p>
+</center>
+
+
+<h1>
+    <meta charset="utf-8">
+    <center1>
+        <br>
+        <p style="font-size: medium"> Already a user, Login</p>
+    </center1>
+        <button><a href="/accounts/login">Login</a></button>
+        </br>
+
+    <center2>
+        <br>
+        <p style="font-size: medium"> Not an existing user, Please Signup</p>
+    </center2>
+        <button><a href="/accounts/signup">Signup</a></button>
+        </br>
+</h1>
+</body>
+</html>
