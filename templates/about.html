@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Document</title>
+   </head>
+   <style>
+      div.fixed {
+      position: fixed;
+      width: 50%;
+      bottom: 60px;
+      right : 30px
+      }
+      div.absolute {
+      position: absolute;
+      width: 50%;
+      bottom: 10px;
+      border: 3px solid #8AC007;
+      }
+   </style>
+   <body>
+      <div class="fixed"><strong>Time (S)</div>
+      <div class="absolute"><strong>Note: This page wil refresh every 4s to show the updated sensor data</div>
+      <script src="https://adtestbucket28-1.s3.ap-south-1.amazonaws.com/highchart.js"></script>
+      <div class="container">
+         <h1>Dashboard</h1>
+         <div class="panel panel-info">
+            <div class="panel-heading">
+               <h3 class="panel-title"><strong>Line Chart</strong></h3>
+            </div>
+            <div class="panel-body">
+               <div id="container1"></div>
+            </div>
+         </div>
+      </div>
+      <script>
+         var x = new XMLHttpRequest();
+         x.open("GET", "https://adtestbucket28.s3.amazonaws.com/", true);
+         // x.setRequestHeader("Content-Type", "application/xml");
+         x.onreadystatechange = function () {
+             if (x.readyState == 4 && x.status == 200) {
+                 let promiseArr = [];
+                 let data = [];
+                 var doc = x.responseXML;
+                 let keys = doc.getElementsByTagName("Key");
+
+                 let index = 0;
+                 createDataSet(index);
+
+                 function createDataSet(index) {
+                     if (index >= keys.length) {
+                         generateGraph();
+                         return false;
+                     }
+                     let element = keys[index];
+                     element = element.textContent;
+
+
+                     let splitName = element.split('/');
+                     if (splitName[0] === 'sensordata' && splitName[1] !== '') {
+                         promiseArr.push(new Promise((resolve, reject) => {
+                             var innerReq = new XMLHttpRequest();
+                             innerReq.open("GET", "https://adtestbucket28.s3.amazonaws.com/" + splitName[0] + "/" + splitName[1], true);
+                             // innerReq.setRequestHeader("Content-Type", "application/xml");
+                             innerReq.onreadystatechange = function () {
+                                 if (innerReq.readyState == 4 && innerReq.status == 200) {
+                                     let parseData = JSON.parse(innerReq.responseText);
+                                     if (parseData.throttle) {
+                                         data.push(Object.assign({}, parseData, { timestamp: splitName[1] }));
+                                     }
+                                     resolve('Done')
+                                     index++;
+                                     createDataSet(index);
+                                 } else {
+                                     // reject(innerReq)
+                                 }
+                             }
+                             innerReq.send(null);
+                         }));
+                     } else {
+                         index++;
+                         createDataSet(index);
+                     }
+                 }
+
+
+
+
+                 function generateGraph() {
+                     Promise.all(promiseArr.map(p => p.catch(e => e)))
+                         .then(res => {
+
+                             abcData = data;
+                             let barGraphXaxisName = ['throttle', 'frontstop', 'Uptime'];
+                             let throttleSum = 0, frontstopSum = 0, uptimeSum = 0;
+                             let lineXaxisData = [], humArr = [], tempArr = [], upArr = [];
+                             for (let i = 0; i < abcData.length; i++) {
+                                 throttleSum += Number(abcData[i].throttle);
+                                 frontstopSum += Number(abcData[i].frontstop);
+                                 uptimeSum += Number(abcData[i].uptime);
+
+                                 humArr.push(Number(abcData[i].throttle));
+                                 tempArr.push(Number(abcData[i].frontstop));
+                                 upArr.push(Number(abcData[i].uptime));
+                                 // lineXaxisData.push(new Date(Number(abcData[i].timestamp)).toLocaleString());
+                             }
+                             Highcharts.chart('container1', {
+
+                                 title: {
+                                     text: 'Sensor Data Display'
+                                 },
+
+                                 yAxis: {
+                                     title: {
+                                         text: 'Sensor data (V)'
+                                     }
+                                 },
+
+                                 xAxis: {
+                                     categories: upArr
+                                 },
+
+                                 legend: {
+                                     layout: 'vertical',
+                                     align: 'right',
+                                     verticalAlign: 'middle'
+                                 },
+
+                                 plotOptions: {
+                                     series: {
+                                         label: {
+                                             connectorAllowed: false
+                                         }
+                                     }
+                                 },
+                                 series: [{
+                                     name: 'throttle',
+                                     data: humArr
+                                 }, {
+                                     name: 'frontstop',
+                                     data: tempArr
+                                 }],
+
+                                 responsive: {
+                                     rules: [{
+                                         condition: {
+                                             maxWidth: 500
+                                         },
+                                         chartOptions: {
+                                             legend: {
+                                                 layout: 'horizontal',
+                                                 align: 'center',
+                                                 verticalAlign: 'bottom'
+                                             }
+                                         }
+                                     }]
+                                 }
+
+                             });
+                         }).catch(err => {
+                             console.log('err', err)
+                         })
+                 }
+
+         function timedRefresh(timeoutPeriod) {
+         setTimeout("location.reload(true);",timeoutPeriod);
+         }
+
+         window.onload = timedRefresh(4000);
+
+             }
+         };
+         x.send(null);
+
+      </script>
+   </body>
+</html>
