@@ -1,0 +1,157 @@
+Using username "ubuntu".
+Authenticating with public key "imported-openssh-key"
+Welcome to Ubuntu 18.04.5 LTS (GNU/Linux 5.4.0-1029-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Thu Jan  7 16:46:54 UTC 2021
+
+  System load:  0.0               Processes:           107
+  Usage of /:   21.6% of 7.69GB   Users logged in:     1
+  Memory usage: 21%               IP address for eth0: 172.31.32.37
+  Swap usage:   0%
+
+
+52 packages can be updated.
+33 updates are security updates.
+
+New release '20.04.1 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Thu Jan  7 16:24:40 2021 from 49.207.212.202
+ubuntu@ip-172-31-32-37:~$ sudo nano /etc/apache2/sites-available/000-default.con                                                                                        f
+ubuntu@ip-172-31-32-37:~$ sudo nano /etc/apache2/sites-available/000-default.conf
+ubuntu@ip-172-31-32-37:~$ sudo nano /etc/apache2/sites-available/000-default.conf
+ubuntu@ip-172-31-32-37:~$ sudo nano /etc/apache2/sites-available/000-default.conf
+ubuntu@ip-172-31-32-37:~$ sudo nano /etc/apache2/sites-available/000-default.conf
+ubuntu@ip-172-31-32-37:~$ cd /var/www/
+ubuntu@ip-172-31-32-37:/var/www$ sudo mkdir logs
+ubuntu@ip-172-31-32-37:/var/www$ ls
+html  logs  web
+ubuntu@ip-172-31-32-37:/var/www$ sudo service apache2 restart
+Job for apache2.service failed because the control process exited with error code.
+See "systemctl status apache2.service" and "journalctl -xe" for details.
+ubuntu@ip-172-31-32-37:/var/www$ systemctl status apache2.service
+● apache2.service - The Apache HTTP Server
+   Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+  Drop-In: /lib/systemd/system/apache2.service.d
+           └─apache2-systemd.conf
+   Active: failed (Result: exit-code) since Thu 2021-01-07 16:54:30 UTC; 16s ago
+  Process: 16193 ExecStop=/usr/sbin/apachectl stop (code=exited, status=1/FAILURE)
+  Process: 15753 ExecReload=/usr/sbin/apachectl graceful (code=exited, status=0/SUCCESS)
+  Process: 16198 ExecStart=/usr/sbin/apachectl start (code=exited, status=1/FAILURE)
+ Main PID: 14872 (code=exited, status=0/SUCCESS)
+
+Jan 07 16:54:30 ip-172-31-32-37 systemd[1]: Starting The Apache HTTP Server...
+Jan 07 16:54:30 ip-172-31-32-37 apachectl[16198]: apache2: Syntax error on line 225 of /etc/apache2/apache2.conf: Sy
+Jan 07 16:54:30 ip-172-31-32-37 apachectl[16198]: Action 'start' failed.
+Jan 07 16:54:30 ip-172-31-32-37 apachectl[16198]: The Apache error log may have more information.
+Jan 07 16:54:30 ip-172-31-32-37 systemd[1]: apache2.service: Control process exited, code=exited status=1
+Jan 07 16:54:30 ip-172-31-32-37 systemd[1]: apache2.service: Failed with result 'exit-code'.
+Jan 07 16:54:30 ip-172-31-32-37 systemd[1]: Failed to start The Apache HTTP Server.
+lines 1-17/17 (END)
+ubuntu@ip-172-31-32-37:/var/www$ sudo service apache2 restart
+Job for apache2.service failed because the control process exited with error code.
+See "systemctl status apache2.service" and "journalctl -xe" for details.
+ubuntu@ip-172-31-32-37:/var/www$ ^C
+ubuntu@ip-172-31-32-37:/var/www$ journalctl -xe
+-- The result is RESULT.
+Jan 07 16:55:22 ip-172-31-32-37 sudo[16227]:   ubuntu : TTY=pts/1 ; PWD=/var/www ; USER=root ; COMMAND=/usr/sbin/ser
+Jan 07 16:55:22 ip-172-31-32-37 sudo[16227]: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Jan 07 16:55:22 ip-172-31-32-37 systemd[1]: Starting The Apache HTTP Server...
+-- Subject: Unit apache2.service has begun start-up
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+--
+-- Unit apache2.service has begun starting up.
+Jan 07 16:55:22 ip-172-31-32-37 apachectl[16233]: apache2: Syntax error on line 225 of /etc/apache2/apache2.conf: Sy
+Jan 07 16:55:22 ip-172-31-32-37 apachectl[16233]: Action 'start' failed.
+Jan 07 16:55:22 ip-172-31-32-37 apachectl[16233]: The Apache error log may have more information.
+Jan 07 16:55:22 ip-172-31-32-37 systemd[1]: apache2.service: Control process exited, code=exited status=1
+Jan 07 16:55:22 ip-172-31-32-37 sudo[16227]: pam_unix(sudo:session): session closed for user root
+Jan 07 16:55:22 ip-172-31-32-37 systemd[1]: apache2.service: Failed with result 'exit-code'.
+Jan 07 16:55:22 ip-172-31-32-37 systemd[1]: Failed to start The Apache HTTP Server.
+-- Subject: Unit apache2.service has failed
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+--
+-- Unit apache2.service has failed.
+--
+-- The result is RESULT.
+
+ubuntu@ip-172-31-32-37:/var/www$ sudo nano /etc/apache2/sites-available/000-default.conf
+ubuntu@ip-172-31-32-37:/var/www$ cd web/
+ubuntu@ip-172-31-32-37:/var/www/web$ ls
+WebApp  accounts  assets  db.sqlite3  manage.py  templates
+ubuntu@ip-172-31-32-37:/var/www/web$ cd WebApp/
+ubuntu@ip-172-31-32-37:/var/www/web/WebApp$ pwd
+/var/www/web/WebApp
+ubuntu@ip-172-31-32-37:/var/www/web/WebApp$ sudo nano /etc/apache2/sites-available/000-default.conf
+ubuntu@ip-172-31-32-37:/var/www/web/WebApp$ sudo service apache2 restart
+Job for apache2.service failed because the control process exited with error code.
+See "systemctl status apache2.service" and "journalctl -xe" for details.
+ubuntu@ip-172-31-32-37:/var/www/web/WebApp$ ^C
+ubuntu@ip-172-31-32-37:/var/www/web/WebApp$ systemctl status apache2.service
+● apache2.service - The Apache HTTP Server
+   Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+  Drop-In: /lib/systemd/system/apache2.service.d
+           └─apache2-systemd.conf
+   Active: failed (Result: exit-code) since Thu 2021-01-07 16:57:52 UTC; 54s ago
+  Process: 16193 ExecStop=/usr/sbin/apachectl stop (code=exited, status=1/FAILURE)
+  Process: 15753 ExecReload=/usr/sbin/apachectl graceful (code=exited, status=0/SUCCESS)
+  Process: 16296 ExecStart=/usr/sbin/apachectl start (code=exited, status=1/FAILURE)
+ Main PID: 14872 (code=exited, status=0/SUCCESS)
+
+Jan 07 16:57:52 ip-172-31-32-37 systemd[1]: Starting The Apache HTTP Server...
+Jan 07 16:57:52 ip-172-31-32-37 apachectl[16296]: apache2: Syntax error on line 225 of /etc/apache2/apache2.conf: Sy
+Jan 07 16:57:52 ip-172-31-32-37 apachectl[16296]: Action 'start' failed.
+Jan 07 16:57:52 ip-172-31-32-37 apachectl[16296]: The Apache error log may have more information.
+Jan 07 16:57:52 ip-172-31-32-37 systemd[1]: apache2.service: Control process exited, code=exited status=1
+Jan 07 16:57:52 ip-172-31-32-37 systemd[1]: apache2.service: Failed with result 'exit-code'.
+Jan 07 16:57:52 ip-172-31-32-37 systemd[1]: Failed to start The Apache HTTP Server.
+lines 1-17/17 (END)
+ubuntu@ip-172-31-32-37:/var/www/web/WebApp$ journalctl | tail
+Jan 07 16:57:52 ip-172-31-32-37 sudo[16290]:   ubuntu : TTY=pts/1 ; PWD=/var/www/web/WebApp ; USER=root ; COMMAND=/u                                                    sr/sbin/service apache2 restart
+Jan 07 16:57:52 ip-172-31-32-37 sudo[16290]: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Jan 07 16:57:52 ip-172-31-32-37 systemd[1]: Starting The Apache HTTP Server...
+Jan 07 16:57:52 ip-172-31-32-37 apachectl[16296]: apache2: Syntax error on line 225 of /etc/apache2/apache2.conf: Sy                                                    ntax error on line 42 of /etc/apache2/sites-enabled/000-default.conf: Expected </VirtualHost*:80> but saw </VirtualH                                                    ost>
+Jan 07 16:57:52 ip-172-31-32-37 apachectl[16296]: Action 'start' failed.
+Jan 07 16:57:52 ip-172-31-32-37 apachectl[16296]: The Apache error log may have more information.
+Jan 07 16:57:52 ip-172-31-32-37 systemd[1]: apache2.service: Control process exited, code=exited status=1
+Jan 07 16:57:52 ip-172-31-32-37 sudo[16290]: pam_unix(sudo:session): session closed for user root
+Jan 07 16:57:52 ip-172-31-32-37 systemd[1]: apache2.service: Failed with result 'exit-code'.
+Jan 07 16:57:52 ip-172-31-32-37 systemd[1]: Failed to start The Apache HTTP Server.
+ubuntu@ip-172-31-32-37:/var/www/web/WebApp$ sudo nano /etc/apache2/sites-available/000-default.conf
+ubuntu@ip-172-31-32-37:/var/www/web/WebApp$ sudo service apache2 restart
+Job for apache2.service failed because the control process exited with error code.
+See "systemctl status apache2.service" and "journalctl -xe" for details.
+ubuntu@ip-172-31-32-37:/var/www/web/WebApp$ journalctl | tail
+Jan 07 17:01:33 ip-172-31-32-37 sudo[16338]:   ubuntu : TTY=pts/1 ; PWD=/var/www/web/WebApp ; USER=root ; COMMAND=/usr/sbin/service apache2 restart
+Jan 07 17:01:33 ip-172-31-32-37 sudo[16338]: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Jan 07 17:01:33 ip-172-31-32-37 systemd[1]: Starting The Apache HTTP Server...
+Jan 07 17:01:33 ip-172-31-32-37 apachectl[16344]: apache2: Syntax error on line 225 of /etc/apache2/apache2.conf: Syntax error on line 42 of /etc/apache2/              sites-enabled/000-default.conf: Expected </VirtualHost*:80> but saw </VirtualHost>
+Jan 07 17:01:33 ip-172-31-32-37 apachectl[16344]: Action 'start' failed.
+Jan 07 17:01:33 ip-172-31-32-37 apachectl[16344]: The Apache error log may have more information.
+Jan 07 17:01:33 ip-172-31-32-37 systemd[1]: apache2.service: Control process exited, code=exited status=1
+Jan 07 17:01:33 ip-172-31-32-37 sudo[16338]: pam_unix(sudo:session): session closed for user root
+Jan 07 17:01:33 ip-172-31-32-37 systemd[1]: apache2.service: Failed with result 'exit-code'.
+Jan 07 17:01:33 ip-172-31-32-37 systemd[1]: Failed to start The Apache HTTP Server.
+ubuntu@ip-172-31-32-37:/var/www/web/WebApp$ sudo nano /etc/apache2/sites-available/000-default.conf
+ubuntu@ip-172-31-32-37:/var/www/web/WebApp$ sudo service apache2 restart
+Job for apache2.service failed because the control process exited with error code.
+See "systemctl status apache2.service" and "journalctl -xe" for details.
+ubuntu@ip-172-31-32-37:/var/www/web/WebApp$ journalctl | tail
+Jan 07 17:02:46 ip-172-31-32-37 sudo[16380]:   ubuntu : TTY=pts/1 ; PWD=/var/www/web/WebApp ; USER=root ; COMMAND=/usr/sbin/service apache2 restart
+Jan 07 17:02:46 ip-172-31-32-37 sudo[16380]: pam_unix(sudo:session): session opened for user root by ubuntu(uid=0)
+Jan 07 17:02:46 ip-172-31-32-37 systemd[1]: Starting The Apache HTTP Server...
+Jan 07 17:02:46 ip-172-31-32-37 apachectl[16386]: apache2: Syntax error on line 225 of /etc/apache2/apache2.conf: Syntax error on line 42 of /etc/apache2/              sites-enabled/000-default.conf: Expected </VirtualHost*:80> but saw </VirtualHost>
+Jan 07 17:02:46 ip-172-31-32-37 apachectl[16386]: Action 'start' failed.
+Jan 07 17:02:46 ip-172-31-32-37 apachectl[16386]: The Apache error log may have more information.
+Jan 07 17:02:46 ip-172-31-32-37 systemd[1]: apache2.service: Control process exited, code=exited status=1
+Jan 07 17:02:46 ip-172-31-32-37 sudo[16380]: pam_unix(sudo:session): session closed for user root
+Jan 07 17:02:46 ip-172-31-32-37 systemd[1]: apache2.service: Failed with result 'exit-code'.
+Jan 07 17:02:46 ip-172-31-32-37 systemd[1]: Failed to start The Apache HTTP Server.
+ubuntu@ip-172-31-32-37:/var/www/web/WebApp$

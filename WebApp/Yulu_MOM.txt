@@ -1,0 +1,91 @@
+Queries:
+1) Module : Single module (one PCB - one module)
+(modular) 200 UNITS.
+End use case is different.
+
+Yulu:
+Hardware same, Firmware & Application different.
+Assign different message IDs for Module 1 & Module 2.
+ADRI:
+One Module on Board satisfying all features of Module 1 & Module 2.
+(Swappable nature)
+
+200 Modules from ADRI.
+Same Hardware + Different FW (100+100)
+
+2) Module will go inside the battery case.
+
+3) Speed Sensor - Is it possible to detect with the help of
+Accl - Yulu
+External Speed Sensor is required - ADRI.
+Drop the Speed Sensor - Yulu.
+
+4) If RPM Can be given by Yulu, ADRI Can be used to calculate the Distance Covered. - Completely Isolate this Module with Existing Yulu Module, Drop the Speed.
+
+5) Goal is Prototyping.
+
+6) Timeline planning - Plan and get back to Yulu.
+
+7) Share the logic, Flow chart share it with Yulu - To confirm the functionality.
+
+8) Yulu will be sharing the pictures of use case scenario.
+
+9) 1.x and 2.x Orientation is changing. (1.x is Horizontal & 2.x is Inclined/Vertical)
+
+------------------------------------------------------------------------------------
+Vehicle Fall : Parked and fell down, Inclination more than 30 deg.
+Accident : Motion - Sudden stop - collision - falling down.
+Rash Driving : Bumpy road(Based on Road Condition), Suddenly high speed and low speed.
+Vibration Impact on Vehicle : System to understand the Vibration, How much Chasis is subjected to Vibration. (Threshold which should not be detected as Accident, Rash driving).
+Vehicle Motion Status : Motion/Rest
+Battery Drop Off : Battery falling down. From 3-4 m height. Battery case can withdtand 6-12 drop. How battery would drp generally.
+Vibration Impact on Battery : Same as Vibration impact on Vehicle.
+
+Battery Movement & Storage : Similar to Motion/Rest.
+Because when battery is removed our module is detached with CAN.
+Few Fault flags sent over CAN.
+Use EEPROM to store the data and send it may be 3/6 hours once (TBD).
+
+Yulu : IoT will request the module to start broadcasting the data.
+If IoT is not asking for data. Do not send it.
+Sending frequency - might be decided by IoT, when IoT needs data.
+
+Normal data : Vibration, falls, Accident keep on sending.
+
+Water sensor : Known
+Temp & Humidity : What kind of application you are looking for?
+Monitoring.. On board sensor.
+If the Vehicle is standing in the sun for long time.
+Within the module temperature we will be able to give.
+If possible integrate Temp & Humidity. Otherwise we will not integrate. (Drop)
+-------------------------------------------------------------------------
+Month end launch of New Yulu Vehicle.
+Only New versions will be used from now on.
+Modules will be put in New Version.
+10K Old Modules are available. Since it is swappable battery
+it can fit into old vehicles as well.
+
+Yulu is providing IoT to Bajaj.
+
+This HW should be modular. Can be put in any Vehicle.
+-----------------------------------------------------------------------------
+Drop - Speed, Temp & Humidity.
+Yulu : Will share the data with ADRI as well.
+Unique ID and the data.
+CSV Format will be shared by Yulu for our data Analysis.
+------------------------------------------------------------------------------
+Regarding Controller :
+Choosing Renesas.
+Suggest the Hardware design and Mr.Aloka will discuss with their IoT Team.
+Cost Factor.
+3-Axis Accelerometer.
+------------------------------------------------------------------------------
+Proposal doc will be prepared by ADRI and will share it with Yulu. Based on the requirement shared by Mr.Aloka.
+-------------------------------------------------------------------------------
+Regarding Lock:
+Opened Lock & Making the doc on Findings.
+How to take it further?
+Feasibility of building the lock!!
+ADRI : Can you share the Requirement from Yulu to start the Project to make Prototype.
+What we need to know in lock, costing, Feasibility of making it in India - then based on that Yulu will come up with the reuirement doc.
+--------------------------------------------------------------------------------
